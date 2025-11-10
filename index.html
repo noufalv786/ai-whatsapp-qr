@@ -1,20 +1,105 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Send AI Tool Info to WhatsApp</title>
+    <style>
+        /* Reset and basic styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px 25px;
+            border-radius: 20px;
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 50px;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border-radius: 50px;
+            border: none;
+            background: #ff4b2b;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: #ff416c;
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                padding: 25px 20px;
+            }
+            h2 {
+                font-size: 1.4rem;
+            }
+            input, button {
+                padding: 12px 15px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h2>Enter Your Mobile Number</h2>
-    <input type="text" id="phone" placeholder="Enter mobile number">
-    <button onclick="sendWhatsApp()">Send Details</button>
+    <div class="container">
+        <h2>Enter Your Mobile Number</h2>
+        <input type="text" id="phone" placeholder="Mobile Number">
+        <button onclick="sendWhatsApp()">Send Details</button>
+    </div>
 
     <script>
+        // Pre-defined AI tools info
         const tools = {
             "chatgpt": "ChatGPT: AI-powered conversational assistant that can answer questions, write text, and more.",
             "dalle": "DALL·E: AI tool for generating images from text descriptions.",
             "deepseek": "DeepSeek: AI for automating CV parsing and ATS-friendly resume creation."
         };
 
+        // Get tool name from URL parameter
         const params = new URLSearchParams(window.location.search);
         const toolName = params.get("tool");
         const toolMessage = tools[toolName] || "No details available for this tool.";
@@ -25,6 +110,7 @@
                 alert("Please enter your mobile number!");
                 return;
             }
+
             const message = `Hello! Here are the details for ${toolName}:\n${toolMessage}`;
             const encodedMessage = encodeURIComponent(message);
             const whatsappUrl = `https://wa.me/${phone}?text=${encodedMessage}`;
