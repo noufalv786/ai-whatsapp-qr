@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Send AI Tool Info to WhatsApp</title>
+</head>
+<body>
+    <h2>Enter Your Mobile Number</h2>
+    <input type="text" id="phone" placeholder="Enter mobile number">
+    <button onclick="sendWhatsApp()">Send Details</button>
+
+    <script>
+        const tools = {
+            "chatgpt": "ChatGPT: AI-powered conversational assistant that can answer questions, write text, and more.",
+            "dalle": "DALL·E: AI tool for generating images from text descriptions.",
+            "deepseek": "DeepSeek: AI for automating CV parsing and ATS-friendly resume creation."
+        };
+
+        const params = new URLSearchParams(window.location.search);
+        const toolName = params.get("tool");
+        const toolMessage = tools[toolName] || "No details available for this tool.";
+
+        function sendWhatsApp() {
+            const phone = document.getElementById("phone").value.trim();
+            if (!phone) {
+                alert("Please enter your mobile number!");
+                return;
+            }
+            const message = `Hello! Here are the details for ${toolName}:\n${toolMessage}`;
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${phone}?text=${encodedMessage}`;
+            window.location.href = whatsappUrl;
+        }
+    </script>
+</body>
+</html>
