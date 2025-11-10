@@ -105,17 +105,41 @@
         const toolMessage = tools[toolName] || "No details available for this tool.";
 
         function sendWhatsApp() {
-            const phone = document.getElementById("phone").value.trim();
-            if (!phone) {
-                alert("Please enter your mobile number!");
-                return;
-            }
+    let phone = document.getElementById("phone").value.trim();
 
-            const message = `Hello! Here are the details for ${toolName}:\n${toolMessage}`;
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/${phone}?text=${encodedMessage}`;
-            window.location.href = whatsappUrl;
-        }
+    if (!phone) {
+        alert("Please enter your mobile number!");
+        return;
+    }
+
+    // Remove spaces, dashes, and non-digit characters
+    phone = phone.replace(/\D/g, "");
+
+    // Convert to +966 format
+    if (phone.startsWith("0")) {
+        phone = "+966" + phone.slice(1);
+    } else if (phone.startsWith("966")) {
+        phone = "+966" + phone.slice(3);
+    } else if (!phone.startsWith("+966")) {
+        phone = "+966" + phone;
+    }
+
+    // Validate length (should be +9665XXXXXXXX, total 13 digits)
+    const regex = /^\+9665\d{8}$/;
+    if (!regex.test(phone)) {
+        alert("Please enter a valid Saudi Arabia mobile number!");
+        return;
+    }
+
+    const message = `Hello! Here are the details for ${toolName}:\n${toolMessage}`;
+    const encodedMessage = encodeURIComponent(message);
+    
+    // Remove + for WhatsApp API (wa.me link needs country code without +)
+    const waNumber = phone.replace("+", "");
+    const whatsappUrl = `https://wa.me/${waNumber}?text=${encodedMessage}`;
+    window.location.href = whatsappUrl;
+}
+
     </script>
 </body>
 </html>
