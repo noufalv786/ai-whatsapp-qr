@@ -1,5 +1,94 @@
-{
-    "chatgpt": "ChatGPT: AI-powered conversational assistant that can answer questions, write text, and more.",
-    "dalle": "DALL·E: AI tool for generating images from text descriptions.",
-    "deepseek": "DeepSeek: AI for automating CV parsing and ATS-friendly resume creation."
+ {
+  "chatgpt": `⭐ *ChatGPT*
+Short History: Developed by OpenAI (founded 2015 by Sam Altman, Elon Musk, etc.). Launched on Nov 30, 2022.
+
+🎯 Purpose: A generative AI chatbot designed to understand natural language and produce human-like text, answer questions, write content, and engage in conversation.
+
+⚙️ Features:
+• Answering complex questions
+• Drafting emails and code
+• Summarizing text
+• Translating languages
+• Creative writing
+• Image generation (via DALL-E)
+• Data analysis
+
+🌍 Scope: Used for education, business, personal productivity, and entertainment. Accessible via web, mobile apps, and API.
+
+💰 Free or Not: Freemium. Free tier available. Paid subscriptions (ChatGPT Plus) provide advanced models and faster speeds.
+
+🔗 Website: https://chat.openai.com/`,
+
+  "capcut": `⭐ *CapCut*
+Short History: Developed by ByteDance (TikTok’s parent). Released in China as 'Jianying' (2019) and globally as CapCut (2020).
+
+🎯 Purpose: All-in-one video editing app for social media creators.
+
+⚙️ Features:
+• Video trimming and splitting
+• Adding music
+• Auto-captions
+• Background removal
+• Text-to-speech
+• Video upscaling
+• AI-powered filters and effects
+
+🌍 Scope: Mobile (iOS/Android) and desktop (Mac/Windows), casual and professional creators.
+
+💰 Free or Not: Freemium. Most features free. Paid 'Pro' unlocks premium effects and cloud storage.
+
+🔗 Website: https://www.capcut.com/`,
+
+  "nottah": `⭐ *Notta.ai*
+Short History: Founded in 2020 by James Jason in Tokyo, Japan.
+
+🎯 Purpose: AI-powered transcription service for meetings and audio/video content.
+
+⚙️ Features:
+• Real-time meeting transcription (Zoom, Google Meet, etc.)
+• Transcription from audio/video files
+• AI-generated summaries
+• Speaker identification
+• Support for 100+ languages
+
+🌍 Scope: For journalists, students, researchers, and business professionals.
+
+💰 Free or Not: Freemium. Free limited minutes; paid plans offer more and advanced features.
+
+🔗 Website: https://www.notta.ai/`,
+
+  "eduaide.ai": `⭐ *Eduaide.ai*
+Short History: Founded in 2023, USA.
+
+🎯 Purpose: AI assistant for teachers and educators to reduce workload and create instructional materials.
+
+⚙️ Features:
+• Generate lesson plans
+• Create quizzes and assessments
+• Write report card comments
+• Develop project-based learning plans
+• Support differentiated instruction
+
+🌍 Scope: K-12 and higher education market, for teachers, schools, and districts.
+
+💰 Free or Not: Paid service. Free trial available; schools have custom pricing.
+
+🔗 Website: https://www.eduaide.ai/`,
+
+  "jobcopilot": `⭐ *JobCopilot*
+Short History: Founded in late 2022 by Emmanuel Crouy, Singapore.
+
+🎯 Purpose: Automates job applications and generates optimized CVs and cover letters.
+
+⚙️ Features:
+• AI-powered job application automation
+• Cover letter generation
+• Resume optimization for ATS
+• AI mock interviews
+
+🌍 Scope: Job seekers globally.
+
+💰 Free or Not: Paid service. May offer limited trial. Subscription-based (weekly/monthly).
+
+🔗 Website: https://www.jobcopilot.com/`
 }

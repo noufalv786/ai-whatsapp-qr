@@ -5,13 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Send AI Tool Info to WhatsApp</title>
     <style>
-        /* Reset and basic styling */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #6a11cb, #2575fc);
@@ -21,7 +15,6 @@
             align-items: center;
             color: #fff;
         }
-
         .container {
             background: rgba(255, 255, 255, 0.05);
             padding: 30px 25px;
@@ -32,59 +25,28 @@
             backdrop-filter: blur(10px);
             box-shadow: 0 8px 30px rgba(0,0,0,0.3);
         }
-
-        h2 {
-            margin-bottom: 20px;
-            font-size: 1.6rem;
-        }
-
+        h2 { margin-bottom: 20px; font-size: 1.6rem; }
         input {
-            width: 100%;
-            padding: 15px 20px;
-            margin-bottom: 20px;
-            border-radius: 50px;
-            border: none;
-            outline: none;
-            font-size: 1rem;
-            background: rgba(255, 255, 255, 0.15);
-            color: #fff;
+            width: 100%; padding: 15px 20px; margin-bottom: 20px;
+            border-radius: 50px; border: none; outline: none;
+            font-size: 1rem; background: rgba(255, 255, 255, 0.15); color: #fff;
         }
-
-        input::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
+        input::placeholder { color: rgba(255, 255, 255, 0.7); }
         button {
-            width: 100%;
-            padding: 15px;
-            border-radius: 50px;
-            border: none;
-            background: #ff4b2b;
-            color: #fff;
-            font-size: 1rem;
-            cursor: pointer;
+            width: 100%; padding: 15px; border-radius: 50px; border: none;
+            background: #ff4b2b; color: #fff; font-size: 1rem; cursor: pointer;
             transition: all 0.3s ease;
         }
-
-        button:hover {
-            background: #ff416c;
-        }
-
+        button:hover { background: #ff416c; }
         @media (max-width: 500px) {
-            .container {
-                padding: 25px 20px;
-            }
-            h2 {
-                font-size: 1.4rem;
-            }
-            input, button {
-                padding: 12px 15px;
-                font-size: 0.95rem;
-            }
+            .container { padding: 25px 20px; }
+            h2 { font-size: 1.4rem; }
+            input, button { padding: 12px 15px; font-size: 0.95rem; }
         }
     </style>
 </head>
 <body>
+
     <div class="container">
         <h2>Enter Your Mobile Number</h2>
         <input type="text" id="phone" placeholder="Mobile Number">
@@ -92,54 +54,148 @@
     </div>
 
     <script>
-        // Pre-defined AI tools info
+        // ✅ Full WhatsApp-formatted tool descriptions
         const tools = {
-            "chatgpt": "ChatGPT: AI-powered conversational assistant that can answer questions, write text, and more.",
-            "dalle": "DALL·E: AI tool for generating images from text descriptions.",
-            "deepseek": "DeepSeek: AI for automating CV parsing and ATS-friendly resume creation."
+            "chatgpt":
+`⭐ *ChatGPT*
+Short History: Developed by OpenAI (founded 2015 by Sam Altman, Elon Musk, etc.). Launched on Nov 30, 2022.
+
+🎯 Purpose: AI chatbot for natural language conversations, writing, coding, and more.
+
+⚙️ Features:
+• Answers complex questions  
+• Writes emails, blogs, code  
+• Summaries & translations  
+• Creative writing  
+• Image generation (DALL·E)  
+
+🌍 Scope: Used in education, business, personal productivity.
+
+💰 Free or Not: Freemium (Plus available).
+
+🔗 Website: chat.openai.com`,
+
+            "capcut":
+`⭐ *CapCut*
+Short History: Created by ByteDance. Released globally in 2020.
+
+🎯 Purpose: Easy video editing for social media creators.
+
+⚙️ Features:
+• Trimming & music  
+• Auto captions  
+• Background removal  
+• AI filters  
+• Text-to-speech  
+
+🌍 Scope: TikTok, Reels, Shorts creators.
+
+💰 Free or Not: Mostly free, Pro version available.
+
+🔗 Website: capcut.com`,
+
+            "nottah":
+`⭐ *Notta.ai*
+Short History: Founded in 2020 in Tokyo.
+
+🎯 Purpose: AI transcription tool for meetings, audio & video.
+
+⚙️ Features:
+• Real-time transcription  
+• Upload audio/video  
+• AI summaries  
+• Speaker detection  
+• 100+ languages  
+
+🌍 Scope: Students, journalists, business users.
+
+💰 Free or Not: Freemium.
+
+🔗 Website: notta.ai`,
+
+            "eduaide.ai":
+`⭐ *Eduaide.ai*
+Short History: Founded in 2023 (USA).
+
+🎯 Purpose: AI assistant for teachers to create education materials.
+
+⚙️ Features:
+• Lesson plans  
+• Quizzes  
+• Assessments  
+• Report card comments  
+• Project-based learning  
+
+🌍 Scope: K-12 & higher education.
+
+💰 Free or Not: Paid (trial available).
+
+🔗 Website: eduaide.ai`,
+
+            "jobcopilot":
+`⭐ *JobCopilot*
+Short History: Founded by Emmanuel Crouy (2022, Singapore).
+
+🎯 Purpose: Automate job applications and create optimized CVs & cover letters.
+
+⚙️ Features:
+• Auto job application  
+• AI cover letters  
+• ATS-friendly resume optimization  
+• Mock interviews  
+
+🌍 Scope: Job seekers worldwide.
+
+💰 Free or Not: Paid plans (weekly/monthly).
+
+🔗 Website: jobcopilot.com`
         };
 
-        // Get tool name from URL parameter
+        // ✅ Get tool from URL
         const params = new URLSearchParams(window.location.search);
         const toolName = params.get("tool");
         const toolMessage = tools[toolName] || "No details available for this tool.";
 
         function sendWhatsApp() {
-    let phone = document.getElementById("phone").value.trim();
+            let phone = document.getElementById("phone").value.trim();
+            if (!phone) {
+                alert("Please enter your mobile number!");
+                return;
+            }
 
-    if (!phone) {
-        alert("Please enter your mobile number!");
-        return;
-    }
+            phone = phone.replace(/\D/g, "");
 
-    // Remove spaces, dashes, and non-digit characters
-    phone = phone.replace(/\D/g, "");
+            if (phone.startsWith("0")) {
+                phone = "+966" + phone.slice(1);
+            } else if (phone.startsWith("966")) {
+                phone = "+966" + phone.slice(3);
+            } else if (!phone.startsWith("+966")) {
+                phone = "+966" + phone;
+            }
 
-    // Convert to +966 format
-    if (phone.startsWith("0")) {
-        phone = "+966" + phone.slice(1);
-    } else if (phone.startsWith("966")) {
-        phone = "+966" + phone.slice(3);
-    } else if (!phone.startsWith("+966")) {
-        phone = "+966" + phone;
-    }
+            const regex = /^\+9665\d{8}$/;
+            if (!regex.test(phone)) {
+                alert("Please enter a valid Saudi Arabia mobile number!");
+                return;
+            }
 
-    // Validate length (should be +9665XXXXXXXX, total 13 digits)
-    const regex = /^\+9665\d{8}$/;
-    if (!regex.test(phone)) {
-        alert("Please enter a valid Saudi Arabia mobile number!");
-        return;
-    }
+            const message =
+`✅ AI Tool Information
+--------------------
 
-    const message = `Hello! Here are the details for ${toolName}:\n${toolMessage}`;
-    const encodedMessage = encodeURIComponent(message);
-    
-    // Remove + for WhatsApp API (wa.me link needs country code without +)
-    const waNumber = phone.replace("+", "");
-    const whatsappUrl = `https://wa.me/${waNumber}?text=${encodedMessage}`;
-    window.location.href = whatsappUrl;
-}
+🛠 *Tool*: ${toolName.toUpperCase()}
 
+${toolMessage}
+
+✅ Thank you!`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const waNumber = phone.replace("+", "");
+            const whatsappUrl = `https://wa.me/${waNumber}?text=${encodedMessage}`;
+
+            window.location.href = whatsappUrl;
+        }
     </script>
+
 </body>
 </html>
